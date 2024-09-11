@@ -3,6 +3,7 @@ import "../../styles/home.css";
 import { Cardcharacter } from "./Cardcharacter";
 import { Cardplanet } from "./cardplanet";
 import { Context } from "../store/appContext";
+import { Cardship } from "./Cardship";
 
 export const Home = () => {
     const { store, actions } = useContext(Context);
@@ -31,6 +32,19 @@ export const Home = () => {
          terrain={planets.terrain} 
 
          index={planets.url[planets.url.length - 2]}
+
+         />)}
+        </div>
+        <h1 className="text-danger">Ships</h1>
+        <div className="row d-flex flex-nowrap my-5" style={{overflowX:"scroll"}}>
+        {store.devShips.map((Ships, index)=>  <Cardship key={index}
+        
+         name={Ships.name} 
+         model={Ships.model} 
+         cost_in_credits={Ships.cost_in_credits} 
+         passengers={Ships.passengers} 
+
+         index={Ships.url[Ships.url.length - 2]}
 
          />)}
         </div>

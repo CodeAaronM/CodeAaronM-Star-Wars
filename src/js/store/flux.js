@@ -19,7 +19,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			devPlanets:[
 				
 			],devPlanet:{},
-			favorites:[]
+			favorites:[],
+			devship: {},
+			devShips: [
+			],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -57,6 +60,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.error("Error fetching dev characters:", error));
 			
+			},
+			getdevShipsData: () => {
+				fetch("https://swapi.dev/api/starships")
+					.then(response => response.json())
+					.then(data => {
+						setStore({ devShips: data.results });
+						console.log("data de dev");
+						console.log(data.results);
+					})
+					.catch(error => console.error("Error fetching dev characters:", error));
+			
+			},
+			getShipData: (uid) => {
+				fetch("https://swapi.dev/api/starships/"+uid)
+				.then(response => response.json())
+				.then(data => {
+					setStore({ devship: data });
+					console.log("data de dev");
+					console.log(data);
+				})
+				.catch(error => console.error("Error fetching dev characters:", error));
 			},
 			getPlanetData: (uid) => {
 				fetch("https://swapi.dev/api/planets/"+uid)
